@@ -1,0 +1,28 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "description": "A decentralised light-Twitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/eslint-parser": "^7.14.3",
+    "@openzeppelin/contracts": "^4.1.0",
+    "@truffle/hdwallet-provider": "^1.4.0",
+    "dotenv": "^10.0.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "solc": "^0.8.4",
+    "solidity-docgen": "^0.5.13",
+    "truffle": "^5.3.7"
+  },
+  "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.11",
+    "chai": "^4.3.4",
+    "prettier": "^2.3.0",
+    "solidity-coverage": "^0.7.16"
+  }
+}
