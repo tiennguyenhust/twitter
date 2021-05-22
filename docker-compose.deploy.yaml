@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  migrate:
+    container_name: deploy
+    build:
+      context: ./
+      dockerfile: deploy.Dockerfile
+    volumes:
+      - ".:/usr/src/app"
+    env_file:
+    - .env

@@ -4,7 +4,12 @@
   "description": "A decentralised light-Twitter",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "trullfe test",
+    "migrate": "truffle migrate --network ropsten",
+    "deploy": "truffle deploy --network ropsten",
+    "docker:migrate": "docker-compose -f docker-compose.migrate.yaml up",
+    "docker:test": "docker-compose -f docker-compose.test.yaml up",
+    "docker:deploy": "docker-compose -f docker-compose.deploy.yaml up"
   },
   "author": "",
   "license": "ISC",
