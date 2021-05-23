@@ -29,11 +29,6 @@ contract TweetFactory {
      * @param _context The context of the tweet
      */
     function createTweet(string memory _context) public {
-        require(
-            ownerTweetCount[msg.sender] == 0,
-            "Only owner can call this function!"    
-        );
-
         uint256 createdAt = block.timestamp;
         tweets.push(
             Tweet(_context, createdAt)
@@ -53,16 +48,30 @@ contract TweetFactory {
     }
 
     /**
-     * @dev A function that allow user to update tweet
-     * @param _id The id of the context
+     * @dev A function that allow the owner to update his (her) tweet
+     * @param _id The id of the tweet
      * @param _context The new context will be updated
      */
-    function updateTweet(uint256 _id, string memory _context) external {
+    function updateTweet(uint256 _id, string calldata _context) external {
         require(
             tweetToOwner[_id] == msg.sender,
             "Only owner can call this function!"    
         );
         tweets[_id].context = _context;
         tweets[_id].createdAt = block.timestamp;
+    }
+
+    /**
+     @dev A function that allow the owner to delete his (her) tweet
+     @param _id the id of the tweet
+     */
+    function deleteTweet(uint256 _id) external {
+        require(
+            tweetToOwner[_id] == msg.sender,
+            "Only owner can call this function!"    
+        );
+        ownerTweetCount[msg.sender]--;
+        delete tweetToOwner[_id];
+        delete tweets[_id];
     }
 }
