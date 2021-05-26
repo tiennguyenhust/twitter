@@ -4,6 +4,8 @@
   "description": "A decentralised light-Twitter",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run artifacts && next client",
+    "artifacts": "copy .\\build\\contracts\\* .\\client\\web3\\artifacts",
     "test": "truffle test",
     "migrate": "truffle migrate --network ropsten",
     "deploy": "truffle deploy --network ropsten",
@@ -20,9 +22,13 @@
     "@truffle/hdwallet-provider": "^1.4.0",
     "dotenv": "^10.0.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "next": "^10.2.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "solc": "^0.8.4",
     "solidity-docgen": "^0.5.13",
-    "truffle": "^5.3.7"
+    "truffle": "^5.3.7",
+    "truffle-contract": "^4.0.31"
   },
   "devDependencies": {
     "@openzeppelin/test-helpers": "^0.5.11",
