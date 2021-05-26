@@ -2,6 +2,7 @@ require("chai").should();
 
 const { expectRevert } = require('@openzeppelin/test-helpers');
 const TweetFactory = artifacts.require("TweetFactory");
+const fee = web3.utils.toWei("0.001");
 
 contract("TweetFactory", function([user0, user1]) {
     beforeEach(async () => {
@@ -43,9 +44,10 @@ contract("TweetFactory", function([user0, user1]) {
             newContent = "Hi! I am Sherlock Holmes";
             await this.TweetFactory.updateTweet(
                 0, newContent, 
-                {from: user0, value: web3.utils.toWei("0.001")}
+                {from: user0, value: fee}
             );
             updatedTweet = await this.TweetFactory.tweets.call([0]);
+            console.log(updatedTweet);
             
             updatedTweet.content.should.equal(newContent);
         });
@@ -57,7 +59,7 @@ contract("TweetFactory", function([user0, user1]) {
             await expectRevert(
                 this.TweetFactory.updateTweet(
                     0, newContent, 
-                    {from: user1, value: web3.utils.toWei("0.001")}
+                    {from: user1, value: fee}
                 ),
                 "Only owner can call this function!"
             )
@@ -68,8 +70,9 @@ contract("TweetFactory", function([user0, user1]) {
         it("should update a tweet", async () => {
             this.TweetFactory.createTweet("Hello, I am Sherlock!", {from: user0});
             
-            await this.TweetFactory.deleteTweet(0, {from: user0, value: web3.utils.toWei("0.001")});
+            await this.TweetFactory.deleteTweet(0, {from: user0, value: fee});
             tweet = await this.TweetFactory.tweets.call([0]);
+            console.log(tweet);
             
             tweet.content.should.equal('');
         });
@@ -78,10 +81,28 @@ contract("TweetFactory", function([user0, user1]) {
             await this.TweetFactory.createTweet("Hello, I am Sherlock!", {from: user0});
             
             await expectRevert(
-                this.TweetFactory.deleteTweet(0, {from: user1, value: web3.utils.toWei("0.001")}),
+                this.TweetFactory.deleteTweet(0, {from: user1, value: fee}),
                 "Only owner can call this function!"
             )
         });
     });
     
+
+    describe("Withdraw", () => {
+        it("should withdraw gas from smart contract", async () => {
+            _content = "Hello, I am Sherlock!";
+            this.TweetFactory.createTweet(_content, {from: user0});
+
+            let firstBalance = await web3.eth.getBalance(user0);
+
+            await this.TweetFactory.withdraw();
+            
+            let lastBalance = await web3.eth.getBalance(user0);
+
+            console.log(firstBalance);
+            console.log(lastBalance);
+
+            assert.notDeepEqual(firstBalance, lastBalance);
+        });
+    });
 })
