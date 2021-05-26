@@ -1,6 +1,6 @@
 import React from 'react'
 import { eth, getInstance } from '../web3/provider' 
-
+import { Page, Center } from "../components/Layout"
 import TweetFactory from "../web3/artifacts/TweetFactory.json"
 
 export default class IndexPage extends React.Component {
@@ -72,7 +72,11 @@ export default class IndexPage extends React.Component {
 
     render() {
         return (
-            <h1>hello world!</h1>
+            <Page>
+                <Center>
+                    <h1>hello world!</h1>
+                </Center>
+            </Page>
         )
     }
 }
