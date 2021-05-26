@@ -4,7 +4,7 @@
   "description": "A decentralised light-Twitter",
   "main": "index.js",
   "scripts": {
-    "test": "trullfe test",
+    "test": "truffle test",
     "migrate": "truffle migrate --network ropsten",
     "deploy": "truffle deploy --network ropsten",
     "docker:migrate": "docker-compose -f docker-compose.migrate.yaml up",
