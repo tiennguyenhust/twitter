@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run artifacts && next client",
-    "artifacts": "copy .\\build\\contracts\\* .\\client\\web3\\artifacts",
+    "artifacts": "copy .\\build\\contracts\\* .\\src\\services",
     "test": "truffle test",
     "fund-metamask": "truffle exec ./fund-metamask.js",
     "migrate": "truffle migrate --network ropsten",

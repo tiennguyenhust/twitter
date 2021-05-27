@@ -10,12 +10,13 @@ const Content = () => {
 
 	const updateTweets = (response) => {
 		let newTweets = [];
-		for (let i = response[0].length - 1; i >= 0; i--) {
+		console.log(response)
+		for (let i = response.length - 1; i >= 0; i--) {
 			newTweets.push({
-				author: response[0][i],
-				content: response[1][i],
-				timestamp: response[2][i],
-				id: response[3][i],
+				author: "0x2090984d1044F2C0B6ac138fAe2EDaB58751e617",
+				content: response[i].content,
+				timestamp: response[i].createdAt,
+				id: i,
 			});
 		}
 		setTweets(newTweets);
@@ -37,11 +38,11 @@ const Content = () => {
 
 	useEffect(() => {
 		// Initial tweet getting
-		smartContract.methods.getTweets().call().then(updateTweets);
+		smartContract.methods.readTweets().call().then(updateTweets);
 
 		let subscription = web3.eth.subscribe("newBlockHeaders", (error) => {
 			if (!error) {
-				smartContract.methods.getTweets().call().then(updateTweets);
+				smartContract.methods.readTweets().call().then(updateTweets);
 			}
 		});
 
