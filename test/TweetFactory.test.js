@@ -38,13 +38,14 @@ contract("TweetFactory", function([user0, user1]) {
     describe("Update a tweet", () => {
         it("should update a tweet", async () => {
             this.TweetFactory.createTweet("Hello, I am Sherlock!", {from: user0});
+            await this.TweetFactory.createTweet("I am a great detective!", {from: user0});
             
-            newContent = "Hi! I am Sherlock Holmes";
+            newContent = "Bonjour! Je m'appelle Sherlock Holmes";
             await this.TweetFactory.updateTweet(
                 0, newContent, 
                 {from: user0}
             );
-            updatedTweet = await this.TweetFactory.tweets.call([0]);
+            updatedTweet = await this.TweetFactory.tweets.call([1]);
             console.log(updatedTweet);
             
             updatedTweet.content.should.equal(newContent);
