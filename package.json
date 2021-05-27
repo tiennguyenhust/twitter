@@ -4,7 +4,7 @@
   "description": "A decentralised light-Twitter",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run artifacts && next client",
+    "dev": "npm run artifacts && npm run frontend:start",
     "artifacts": "copy .\\build\\contracts\\* .\\src\\services",
     "test": "truffle test",
     "fund-metamask": "truffle exec ./fund-metamask.js",
