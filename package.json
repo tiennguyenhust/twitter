@@ -12,7 +12,11 @@
     "deploy": "truffle deploy --network ropsten",
     "docker:migrate": "docker-compose -f docker-compose.migrate.yaml up",
     "docker:test": "docker-compose -f docker-compose.test.yaml up",
-    "docker:deploy": "docker-compose -f docker-compose.deploy.yaml up"
+    "docker:deploy": "docker-compose -f docker-compose.deploy.yaml up",
+    "frontend:start": "craco start",
+    "frontend:build": "craco build",
+    "frontend:test": "craco test",
+    "frontend:eject": "react-scripts eject"
   },
   "author": "",
   "license": "ISC",
@@ -29,12 +33,44 @@
     "solc": "^0.8.4",
     "solidity-docgen": "^0.5.13",
     "truffle": "^5.3.7",
-    "truffle-contract": "^4.0.31"
+    "truffle-contract": "^4.0.31",
+    "@craco/craco": "^6.0.0",
+    "@material-ui/core": "^4.11.2",
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "autoprefixer": "^9.8.6",
+    "moment": "^2.29.1",
+    "postcss": "^7.0.35",
+    "prop-types": "^15.7.2",
+    "react-scripts": "4.0.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "web-vitals": "^0.2.4",
+    "web3": "^1.3.1"
   },
   "devDependencies": {
     "@openzeppelin/test-helpers": "^0.5.11",
     "chai": "^4.3.4",
     "prettier": "^2.3.0",
-    "solidity-coverage": "^0.7.16"
+    "solidity-coverage": "^0.7.16",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
