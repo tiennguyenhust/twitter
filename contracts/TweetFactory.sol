@@ -11,7 +11,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  */
 contract TweetFactory is Ownable{
 
-    event NewTweet(uint256 id, string content, uint256 createdAt);
+    event NewTweet(uint256 id, string content, uint256 createdAt, address onwer);
 
     uint256 digits = 16;
 	uint256 idModulus = 10**digits;
@@ -20,6 +20,7 @@ contract TweetFactory is Ownable{
     struct Tweet {
         string content;
         uint256 createdAt;
+        address owner;
     }
 
     Tweet[] public tweets;
@@ -53,15 +54,16 @@ contract TweetFactory is Ownable{
      * @param _content The content of the tweet
      */
     function createTweet(string memory _content) public {
+        // require(msg.value == fee);
         uint256 createdAt = block.timestamp;
         tweets.push(
-            Tweet(_content, createdAt)
+            Tweet(_content, createdAt, address(msg.sender))
         );
         
         uint256 id = tweets.length - 1;
         tweetToOwner[id] = msg.sender;
         ownerTweetCount[msg.sender]++;
-        emit NewTweet(id, _content, createdAt);
+        emit NewTweet(id, _content, createdAt, address(msg.sender));
     }
 
     /**
@@ -76,20 +78,29 @@ contract TweetFactory is Ownable{
      * @param _id The id of the tweet
      * @param _content The new content will be updated
      */
-    function updateTweet(uint256 _id, string calldata _content) external ownerOf(_id) payable {
-        require(msg.value == fee);
-        tweets[_id].content = _content;
-        tweets[_id].createdAt = block.timestamp;
+    function updateTweet(uint256 _id, string calldata _content) public ownerOf(_id) {
+        // require(msg.value == fee);
+        Tweet memory updatedTweet = tweets[_id];
+        updatedTweet.content = _content;
+        updatedTweet.createdAt = block.timestamp;
+
+        for (uint i=_id; i<tweets.length-1; i++){
+            tweets[i] = tweets[i+1];
+        }
+        tweets[tweets.length-1] = updatedTweet;
     }
 
     /**
      @dev A function that allow the owner to delete his (her) tweet
      @param _id the id of the tweet
      */
-    function deleteTweet(uint256 _id) external ownerOf(_id) payable {
-        require(msg.value == fee);
+    function deleteTweet(uint256 _id) public ownerOf(_id) {
+        // require(msg.value == fee);
         ownerTweetCount[msg.sender]--;
+        for (uint i=_id; i<tweets.length-1; i++){
+            tweets[i] = tweets[i+1];
+        }
+        tweets.pop();
         delete tweetToOwner[_id];
-        delete tweets[_id];
     }
 }

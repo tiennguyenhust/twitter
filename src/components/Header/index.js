@@ -23,7 +23,7 @@ const Header = () => {
 					console.error(err);
 				});
 		}
-	}, []);
+	});
 
 	const handleAccountsChanged = (accounts) => {
 		if (accounts.length === 0) {

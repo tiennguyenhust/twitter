@@ -10,13 +10,13 @@ const Content = () => {
 
 	const updateTweets = (response) => {
 		let newTweets = [];
-		console.log(response)
+
 		for (let i = response.length - 1; i >= 0; i--) {
 			newTweets.push({
-				author: "0x2090984d1044F2C0B6ac138fAe2EDaB58751e617",
+				author: response[i].owner,
 				content: response[i].content,
 				timestamp: response[i].createdAt,
-				id: i,
+				id: i.toString(),
 			});
 		}
 		setTweets(newTweets);
@@ -48,6 +48,7 @@ const Content = () => {
 
 		return subscription.unsubscribe((error, success) => {
 			if (success) {
+				// eslint-disable-next-line no-console
 				console.log("Successfully unsubscribed");
 			}
 		});
