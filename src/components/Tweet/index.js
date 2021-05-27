@@ -25,8 +25,6 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 	const handleDelete = async () => {
 		try {
 			const userAccount = await web3.eth.getAccounts();
-			console.log(id);
-			console.log(userAccount[0]);
 			smartContract.methods
 				.deleteTweet(id)
 				.send({ from: userAccount[0] });
