@@ -7,6 +7,7 @@
     "dev": "npm run artifacts && next client",
     "artifacts": "copy .\\build\\contracts\\* .\\client\\web3\\artifacts",
     "test": "truffle test",
+    "fund-metamask": "truffle exec ./fund-metamask.js",
     "migrate": "truffle migrate --network ropsten",
     "deploy": "truffle deploy --network ropsten",
     "docker:migrate": "docker-compose -f docker-compose.migrate.yaml up",
