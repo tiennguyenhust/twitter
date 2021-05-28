@@ -1,0 +1,26 @@
+
+.tlt-btn {
+    font-weight: 700 !important;
+    border-radius: 50px !important;
+    text-transform: none!important;
+    margin-top: 10px !important;
+    color: hsl(0, 0%, 46%) !important;
+}
+
+.tlt-btn.positive-btn.active {
+    background-color: rgb(29, 161, 242) !important;
+    color: white !important;
+}
+
+.tlt-btn.positive-btn.active:hover {
+    background-color: #1976d2 !important;
+}
+
+.tlt-btn.negative-btn.active {
+    background-color: #ef5350 !important;
+    color: white !important;
+}
+
+.tlt-btn.negative-btn.active:hover {
+    background-color: #c62828 !important;
+}
