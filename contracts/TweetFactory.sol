@@ -86,8 +86,10 @@ contract TweetFactory is Ownable{
 
         for (uint i=_id; i<tweets.length-1; i++){
             tweets[i] = tweets[i+1];
+            tweetToOwner[i] = tweets[i+1].owner;
         }
         tweets[tweets.length-1] = updatedTweet;
+        tweetToOwner[tweets.length-1] = updatedTweet.owner;
     }
 
     /**

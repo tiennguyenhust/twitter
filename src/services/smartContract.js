@@ -3,7 +3,7 @@ import TweetFactory from "./TweetFactory.json"
 
 let Web3 = require("web3");
 
-export const address = "0x00F2410Ca9Fce1BEC0466359ee36f259AE89290e";
+export const address = "0xfA6815F402dBb0B3Cf2630334Ee9385524098051";
 
 export const web3 = new Web3(
 	window.ethereum ||
