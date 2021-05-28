@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import CommonStyle from "../../resources/common.css";
+import Style from "./index.css";
 
 import smartContract from "services/smartContract.js";
 
@@ -29,8 +31,13 @@ const Header = () => {
 		if (accounts.length === 0) {
 			setError("Please connect to Metamask");
 			setCurrentAccount(null);
+			document.querySelector('#enableMetamask').classList.add("active");
+			document.querySelector('#submitTweet').classList.remove("active");
+		
 		} else if (accounts[0] !== currentAccount) {
 			setCurrentAccount(accounts[0]);
+			document.querySelector('#enableMetamask').classList.remove("active");
+			document.querySelector('#submitTweet').classList.add("active");
 		}
 	};
 
@@ -41,6 +48,8 @@ const Header = () => {
 				.then((response) => {
 					handleAccountsChanged(response);
 					setError(null);
+    				document.querySelector('#enableMetamask').classList.remove("active");
+    				document.querySelector('#submitTweet').classList.add("active");
 				})
 				.catch((err) => {
 					if (err.code === 40001) {
@@ -61,24 +70,27 @@ const Header = () => {
 
 	return (
 		<div>
-			<Button
-				variant="contained"
-				className="w-full"
-				onClick={enableMetamask}
-				disabled={currentAccount !== null}
-			>
-				Enable Metamask
-			</Button>
+			<div className="enable-metamask w-full">
+				<Button
+					id="enableMetamask"
+					className="tlt-btn positive-btn active"
+					variant="contained"
+					onClick={enableMetamask}
+					disabled={currentAccount !== null}
+				>
+					Enable Metamask
+				</Button>
+			</div>
 			<form
 				noValidate
 				autoComplete="off"
-				className="w-full flex justify-between mt-3"
+				className="w-full"
 				onSubmit={(event) => {
 					event.preventDefault();
 					handleSubmit(tweet);
 				}}
 			>
-				<div className="w-5/6 pr-1">
+				<div className="tweet-input w-full">
 					<TextField
 						id="outlined-basic"
 						label="Your tweet"
@@ -88,11 +100,11 @@ const Header = () => {
 						onChange={handleChange}
 					/>
 				</div>
-				<div className="pl-1 w-1/6 h-14">
+				<div className="tweet-submit w-full flex justify-end">
 					<Button
+						id="submitTweet"
+						className="tlt-btn positive-btn"
 						variant="contained"
-						color="primary"
-						className="w-full h-full"
 						type="submit"
 						disabled={currentAccount === null}
 					>

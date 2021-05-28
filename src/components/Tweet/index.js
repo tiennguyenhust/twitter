@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 
 import smartContract from "services/smartContract.js";
 import { web3 } from "services/smartContract";
+import CommonStyle from "../../resources/common.css";
+import Style from "./index.css";
 
 const moment = require("moment");
 
@@ -14,11 +16,14 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 	const [tweet, setTweet] = useState("");
 	const [error, setError] = useState(null);
 
-	const handleEdit = () => {
+	const handleEdit = (e) => {
 		if (!edit) {
 			setEdit(true);
+			console.log('a');
+			e.target.parentElement.classList.remove("active");
 		} else {
 			setEdit(false);
+			e.target.parentElement.classList.add("active");
 		}
 	};
 
@@ -48,8 +53,8 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 	};
 
 	return (
-		<div className="border p-3 hover:bg-gray-100">
-			<div className="flex flex-row justify-between">
+		<div className="tweet-block border p-3 hover:bg-gray-100">
+			<div className="w-full flex justify-between">
 				<div className="flex flex-row content-center justify-center">
 					<div className="font-bold break-all">{author}</div>
 					<div className="px-1">·</div>
@@ -79,22 +84,20 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 							onChange={handleChange}
 						/>
 					</div>
-					<div className="pl-1 w-1/6 h-14">
+					<div className="pl-1 w-2/6 h-14">
 						<Button
+							className="tlt-btn"
 							variant="contained"
-							className="w-full h-full"
 							onClick={() => {
 								setEdit(false);
 							}}
 						>
 							Cancel
 						</Button>
-					</div>
-					<div className="pl-1 w-1/6 h-14">
 						<Button
+							className="tlt-btn positive-btn active"
 							variant="contained"
 							color="primary"
-							className="w-full h-full"
 							type="submit"
 						>
 							Update
@@ -105,13 +108,18 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 			{author == account && (
 				<div className="flex flex-row justify-end mt-2">
 					<Button
+						className="edit-btn tlt-btn positive-btn active"
 						variant="contained"
 						onClick={handleEdit}
 						disabled={edit}
 					>
 						Edit
 					</Button>
-					<Button variant="contained" onClick={handleDelete}>
+					<Button 
+						className="tlt-btn negative-btn active"
+						variant="contained"
+						onClick={handleDelete}
+					>
 						Delete
 					</Button>
 				</div>
