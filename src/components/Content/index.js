@@ -14,7 +14,7 @@ const Content = () => {
 
 		for (let i = response.length - 1; i >= 0; i--) {
 			newTweets.push({
-				author: "0xC53A4924602A5EbcF4782E840031d17147ae9802",
+				author: response[i].owner,
 				content: response[i].content,
 				timestamp: response[i].createdAt,
 				id: i.toString(),
