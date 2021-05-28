@@ -14,18 +14,23 @@ const moment = require("moment");
 
 const Tweet = ({ author, content, timestamp, id, account }) => {
 	const [edit, setEdit] = useState(false);
+	const [editClassList, setEditClassList] = useState("edit-btn tlt-btn positive-btn active");
 	const [tweet, setTweet] = useState("");
 	const [error, setError] = useState(null);
 
 	const handleEdit = (e) => {
 		if (!edit) {
 			setEdit(true);
-			console.log('a');
-			e.target.parentElement.classList.remove("active");
+			setEditClassList("edit-btn tlt-btn positive-btn");
 		} else {
 			setEdit(false);
-			e.target.parentElement.classList.add("active");
+			setEditClassList("edit-btn tlt-btn positive-btn active");
 		}
+	};
+
+	const cancelEdit = (e) => {
+		setEdit(false);
+		setEditClassList("edit-btn tlt-btn positive-btn active");
 	};
 
 	const handleDelete = async () => {
@@ -50,6 +55,7 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 			.send({ from: userAccount[0] })
 			.then(() => {
 				setEdit(false);
+				setEditClassList("edit-btn tlt-btn positive-btn active");
 			});
 	};
 
@@ -89,9 +95,7 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 						<Button
 							className="tlt-btn"
 							variant="contained"
-							onClick={() => {
-								setEdit(false);
-							}}
+							onClick={cancelEdit}
 						>
 							Cancel
 						</Button>
@@ -109,7 +113,7 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 			{author == account && (
 				<div className="flex flex-row justify-end mt-2">
 					<Button
-						className="edit-btn tlt-btn positive-btn active"
+						className={editClassList}
 						variant="contained"
 						onClick={handleEdit}
 						disabled={edit}
