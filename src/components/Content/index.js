@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect } from "react";
 import smartContract from "services/smartContract.js";
 import { web3 } from "services/smartContract";
