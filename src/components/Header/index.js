@@ -74,7 +74,7 @@ const Header = () => {
 			<div className="enable-metamask w-full">
 				<Button
 					id="enableMetamask"
-					className="tlt-btn positive-btn active"
+					className="tlt-btn main active"
 					variant="contained"
 					onClick={enableMetamask}
 					disabled={currentAccount !== null}
@@ -104,7 +104,7 @@ const Header = () => {
 				<div className="tweet-submit w-full flex justify-end">
 					<Button
 						id="submitTweet"
-						className="tlt-btn positive-btn"
+						className="tlt-btn main"
 						variant="contained"
 						type="submit"
 						disabled={currentAccount === null}
