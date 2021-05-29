@@ -10,7 +10,7 @@ contract("TweetFactory", function([user0, user1]) {
         this.TweetFactory = await TweetFactory.new();
     });
 
-    describe("Createing new Tweet", () => {
+    describe("Creating a new Tweet", () => {
         it("should create new tweet from a content", async () => {
             _content = "Hello, I am Sherlock!";
             this.TweetFactory.createTweet(_content, {from: user0});
@@ -18,6 +18,7 @@ contract("TweetFactory", function([user0, user1]) {
             firstTweet = await this.TweetFactory.tweets.call([0]);
             console.log(firstTweet.content + ": " + firstTweet.createdAt);
             firstTweet.content.should.equal(_content);
+            firstTweet.owner.should.equal(user0);
         });
     });
 
@@ -36,7 +37,7 @@ contract("TweetFactory", function([user0, user1]) {
         });
     });
 
-    describe("Update a tweet", () => {
+    describe("Updating a tweet", () => {
         it("should update a tweet", async () => {
             this.TweetFactory.createTweet("Hello, I am Sherlock!", {from: user0});
             await this.TweetFactory.createTweet("I am a great detective!", {from: user0});
@@ -66,7 +67,7 @@ contract("TweetFactory", function([user0, user1]) {
         });
     });
 
-    describe("Delete a tweet", () => {
+    describe("Deleting a tweet", () => {
         it("should update a tweet", async () => {
             this.TweetFactory.createTweet("Hello, I am Sherlock!", {from: user0});
             await this.TweetFactory.createTweet("I am a famous detective!", {from: user0});
