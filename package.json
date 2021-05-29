@@ -13,6 +13,8 @@
     "docker:migrate": "docker-compose -f docker-compose.migrate.yaml up",
     "docker:test": "docker-compose -f docker-compose.test.yaml up",
     "docker:deploy": "docker-compose -f docker-compose.deploy.yaml up",
+    "docker:coverage": "docker-compose -f docker-compose.coverage.yaml up",
+    "docker:start": "docker-compose -f docker-compose.start.yaml up",
     "frontend:start": "craco start",
     "frontend:build": "craco build",
     "frontend:test": "craco test",
