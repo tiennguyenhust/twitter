@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
@@ -7,6 +8,8 @@ import Button from "@material-ui/core/Button";
 
 import smartContract from "services/smartContract.js";
 import { web3 } from "services/smartContract";
+import CommonStyle from "../../resources/common.css";
+import Style from "./index.css";
 
 const moment = require("moment");
 

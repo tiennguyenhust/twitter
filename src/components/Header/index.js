@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 import smartContract from "services/smartContract.js";
+import CommonStyle from "../../resources/common.css";
+import Style from "./index.css";
 
 const Header = () => {
 	const [tweet, setTweet] = useState("");
