@@ -16,6 +16,10 @@
     background-color: #1976d2 !important;
 }
 
+.tlt-btn:focus {
+    outline: none;
+}
+
 .tlt-btn.negative-btn.active {
     background-color: #ef5350 !important;
     color: white !important;

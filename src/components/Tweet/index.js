@@ -18,7 +18,7 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 	const [tweet, setTweet] = useState("");
 	const [error, setError] = useState(null);
 
-	const handleEdit = (e) => {
+	const handleEdit = () => {
 		if (!edit) {
 			setEdit(true);
 			setEditClassList("edit-btn tlt-btn positive-btn");
@@ -28,7 +28,7 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 		}
 	};
 
-	const cancelEdit = (e) => {
+	const cancelEdit = () => {
 		setEdit(false);
 		setEditClassList("edit-btn tlt-btn positive-btn active");
 	};
@@ -55,7 +55,6 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 			.send({ from: userAccount[0] })
 			.then(() => {
 				setEdit(false);
-				setEditClassList("edit-btn tlt-btn positive-btn active");
 			});
 	};
 
