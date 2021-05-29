@@ -7,6 +7,7 @@
     - test: docker-compose.test.yaml and test.Dockerfile
     - migrate: docker-compose.migrate.yaml and migrate.Dockerfile
     - coverage: docker-compose.coverage.yaml and coverage.Dockerfile
+    - run the web application: docker-compose.start.yaml and start.Dockerfile
 
 ### 2. Initialize application
     - download repository: git clone git@github.com:tiennguyenhust/twitter.git
@@ -21,5 +22,8 @@
     - check test coverage: npm run docker:coverage
 
 ### 4. Start Application:
-    - npm run frontend:start
+    - npm run docker:start
+
+==> Open the site http://localhost:3000/ in your brower
+    * Note: in the first run, you need to continue with a new image by entering Y or y in command line
 
