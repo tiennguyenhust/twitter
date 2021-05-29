@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 require("chai").should();
 
 const { expectRevert } = require('@openzeppelin/test-helpers');
 const TweetFactory = artifacts.require("TweetFactory");
-const fee = web3.utils.toWei("0.001");
 
 contract("TweetFactory", function([user0, user1]) {
     beforeEach(async () => {
