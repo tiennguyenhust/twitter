@@ -93,7 +93,7 @@ const Tweet = ({ author, content, timestamp, id, account }) => {
 					</div>
 					<div className="pl-1 w-2/6 h-14">
 						<Button
-							className="tlt-btn positive-btn active"
+							className="tlt-btn positive-btn active cancel-btn"
 							variant="contained"
 							onClick={cancelEdit}
 						>
