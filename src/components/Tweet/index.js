@@ -8,8 +8,8 @@ import Button from "@material-ui/core/Button";
 
 import smartContract from "services/smartContract.js";
 import { web3 } from "services/smartContract";
-import CommonStyle from "../../resources/common.css";
-import Style from "./index.css";
+import "../../resources/common.css";
+import "./index.css";
 
 const moment = require("moment");
 
